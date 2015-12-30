@@ -9,7 +9,7 @@ import javax.management.openmbean.CompositeData;
 
 public class StreamManager extends MBean {
 
-    public StreamManager(JmxClient client) {
+    public StreamManager(Connection client) {
         super(client, newObjectName("org.apache.cassandra.net:type=StreamManager"));
     }
 

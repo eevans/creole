@@ -22,16 +22,16 @@ import com.google.common.collect.Lists;
 
 public class Probe {
 
-    private final JmxClient client;
+    private final Connection client;
 
     public Probe(String host, int port) throws IOException {
-        this(new JmxClient(checkNotNull(host, "host argument"), checkNotNull(port, "port argument")));
+        this(new Connection(checkNotNull(host, "host argument"), checkNotNull(port, "port argument")));
     }
 
-    public Probe(JmxClient client) {
+    public Probe(Connection client) {
         this.client = checkNotNull(client);
     }
-
+    
     // XXX: Untested
     public Collection<Stream> getStreams() throws IOException {
         List<Stream> streams = Lists.newArrayList();

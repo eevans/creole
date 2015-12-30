@@ -12,7 +12,7 @@ import javax.management.remote.JMXServiceURL;
 
 import com.google.common.base.Throwables;
 
-public class JmxClient implements Closeable {
+public class Connection implements Closeable {
 
     private static final String URL = "service:jmx:rmi:///jndi/rmi://%s:%d/jmxrmi";
 
@@ -21,7 +21,7 @@ public class JmxClient implements Closeable {
     private JMXConnector jmxc;
     private MBeanServerConnection mbeanServerConn;
 
-    public JmxClient(String host, int port) throws IOException {
+    public Connection(String host, int port) throws IOException {
         try {
             this.jmxUrl = new JMXServiceURL(String.format(URL, host, port));
         }
@@ -52,7 +52,7 @@ public class JmxClient implements Closeable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        JmxClient other = (JmxClient) obj;
+        Connection other = (Connection) obj;
         if (jmxUrl == null) {
             if (other.jmxUrl != null)
                 return false;

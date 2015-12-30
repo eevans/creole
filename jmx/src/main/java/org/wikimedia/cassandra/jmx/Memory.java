@@ -9,7 +9,7 @@ import javax.management.openmbean.CompositeDataSupport;
 
 public class Memory extends MBean {
 
-    public Memory(JmxClient client) {
+    public Memory(Connection client) {
         super(client, newObjectName(MEMORY_MXBEAN_NAME));
     }
 

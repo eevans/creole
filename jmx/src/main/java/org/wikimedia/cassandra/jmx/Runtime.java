@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Runtime extends MBean {
 
-    public Runtime(JmxClient client) {
+    public Runtime(Connection client) {
         super(client, newObjectName(RUNTIME_MXBEAN_NAME));
     }
 

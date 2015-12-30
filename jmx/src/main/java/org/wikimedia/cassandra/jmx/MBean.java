@@ -16,12 +16,12 @@ import javax.management.ReflectionException;
 import com.google.common.base.Throwables;
 
 class MBean {
-    protected final JmxClient client;
+    protected final Connection client;
     protected final ObjectName objectName;
 
     protected MBeanInfo info;
 
-    MBean(JmxClient client, ObjectName objectName) {
+    MBean(Connection client, ObjectName objectName) {
         this.client = checkNotNull(client, "client argument");
         this.objectName = checkNotNull(objectName, "objectName argument");
     }

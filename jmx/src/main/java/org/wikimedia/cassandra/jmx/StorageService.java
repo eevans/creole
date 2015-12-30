@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class StorageService extends MBean {
 
-    public StorageService(JmxClient client) {
+    public StorageService(Connection client) {
         super(client, newObjectName("org.apache.cassandra.db:type=StorageService"));
     }
 

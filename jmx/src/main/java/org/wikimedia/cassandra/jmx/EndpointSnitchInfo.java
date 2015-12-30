@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class EndpointSnitchInfo extends MBean {
 
-    public EndpointSnitchInfo(JmxClient client) {
+    public EndpointSnitchInfo(Connection client) {
         super(client, newObjectName("org.apache.cassandra.db:type=EndpointSnitchInfo"));
     }
 
