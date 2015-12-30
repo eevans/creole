@@ -17,7 +17,8 @@ public class Args {
     @Argument(handler = SubCommandHandler.class, required = true, metaVar = "sub-command", usage = "Sub-command name")
     @SubCommands({
             @SubCommand(name = "info", impl = InfoCommand.class),
-            @SubCommand(name = "netstat", impl = NetstatCommand.class) })
+            @SubCommand(name = "netstat", impl = NetstatCommand.class),
+            @SubCommand(name = "metrics-dump", impl = MetricsCommand.class) })
     private Command command;
 
     @Option(name = "-h", aliases = { "--help" }, help = true, usage = "Print help synopsis")
