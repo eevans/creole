@@ -1,4 +1,4 @@
-package org.wikimedia.caizen.agent;
+package org.wikimedia.creole.agent;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

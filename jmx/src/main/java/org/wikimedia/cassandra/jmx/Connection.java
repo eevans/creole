@@ -28,7 +28,12 @@ public class Connection implements Closeable {
         catch (MalformedURLException e) {
             throw Throwables.propagate(e);
         }
-        
+
+        connect();
+    }
+
+    public Connection(JMXServiceURL jmxUrl) throws IOException {
+        this.jmxUrl = jmxUrl;
         connect();
     }
 

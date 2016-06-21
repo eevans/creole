@@ -5,10 +5,10 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.wikimedia</groupId>
-  <artifactId>caizen-parent</artifactId>
+  <artifactId>creole-parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Caizen</name>
+  <name>Creole</name>
   <description>High level JMX library for Apache Cassandra</description>
 
   <licenses>
@@ -19,8 +19,8 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/eevans/caizen</url>
-    <connection>https://github.com/eevans/caizen.git</connection>
+    <url>https://github.com/eevans/creole</url>
+    <connection>https://github.com/eevans/creole.git</connection>
   </scm>
 
   <developers>

@@ -1,4 +1,4 @@
-package org.wikimedia.caizen.agent;
+package org.wikimedia.creole.agent;
 
 import java.io.IOException;
 
@@ -16,6 +16,7 @@ public class Runner {
         };
     }
 
+    // Wraps Spark#get to side-step some of the boilerplate associated with regular JSON responses.
     private static void get(String path, Route route) {
         Spark.get(path, "application/json", wrapContentType(route), new JsonTransformer());
     }
@@ -29,7 +30,7 @@ public class Runner {
 
         final Probe probe = new Probe(args[0], Integer.parseInt(args[1]));
 
-        get("/v1/info", (req, res) -> probe.getNode());
+        get("/v1/info",    (req, res) -> probe.getNode());
         get("/v1/streams", (req, res) -> probe.getStreams());
         get("/v1/metrics", (req, res) -> probe.getMetrics());
 

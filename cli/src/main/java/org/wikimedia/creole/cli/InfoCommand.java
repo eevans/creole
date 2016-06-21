@@ -1,4 +1,4 @@
-package org.wikimedia.caizen.cli;
+package org.wikimedia.creole.cli;
 
 import java.io.IOException;
 

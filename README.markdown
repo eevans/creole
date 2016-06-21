@@ -1,4 +1,4 @@
-Caizen
+Creole
 ======
 
 Quickstart
@@ -11,7 +11,7 @@ Build:
 
 Usage (CLI):
 
-    $ java -jar cli/target/caizen-cli-1.0.0-SNAPSHOT-jar-with-dependencies.jar -H localhost -P 7100 info
+    $ java -jar cli/target/creole-cli-1.0.0-SNAPSHOT-jar-with-dependencies.jar -H localhost -P 7100 info
     {
       "id" : "599dd96a-9325-4f62-bafd-c1731c5ddf9e",
       "version" : "2.1.12-SNAPSHOT",
@@ -30,7 +30,7 @@ Usage (CLI):
 
 Usage (REST API):
 
-     $ java -jar agent/target/caizen-agent-1.0.0-SNAPSHOT-jar-with-dependencies.jar localhost 7100
+     $ java -jar agent/target/creole-agent-1.0.0-SNAPSHOT-jar-with-dependencies.jar localhost 7100
      [Thread-1] INFO org.eclipse.jetty.util.log - Logging initialized @308ms
      [Thread-1] INFO spark.webserver.JettySparkServer - == Spark has ignited ...
      [Thread-1] INFO spark.webserver.JettySparkServer - >> Listening on 0.0.0.0:4567

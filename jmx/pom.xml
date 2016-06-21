@@ -6,15 +6,15 @@
 
   <parent>
     <groupId>org.wikimedia</groupId>
-    <artifactId>caizen-parent</artifactId>
+    <artifactId>creole-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>caizen-jmx</artifactId>
+  <artifactId>creole-jmx</artifactId>
   <packaging>jar</packaging>
-  <name>Caizen JMX</name>
+  <name>Creole JMX</name>
 
   <dependencies>
     <dependency>
