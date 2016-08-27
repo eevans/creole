@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.management.MBeanAttributeInfo;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
 
+import org.wikimedia.cassandra.jmx.dto.Compaction;
+import org.wikimedia.cassandra.jmx.dto.CompactionHistoryItem;
 import org.wikimedia.cassandra.jmx.dto.Metric;
 import org.wikimedia.cassandra.jmx.dto.Node;
 import org.wikimedia.cassandra.jmx.dto.Stream;
@@ -31,7 +34,21 @@ public class Probe {
     public Probe(Connection client) {
         this.client = checkNotNull(client);
     }
-    
+
+    public List<Compaction> getCompactions() throws IOException {
+        List<Compaction> compactions = Lists.newArrayList();
+        for (Map<String, String> compaction : new CompactionManager(this.client).getCompactions())
+            compactions.add(Compaction.create(compaction));
+        return compactions;
+    }
+
+    public Collection<CompactionHistoryItem> getCompactionHistory() throws IOException {
+        List<CompactionHistoryItem> items = Lists.newArrayList();
+        for (Object item : new CompactionManager(this.client).getCompactionHistory().values())
+            items.add(CompactionHistoryItem.create((CompositeData) item));
+        return items;
+    }
+
     // XXX: Untested
     public Collection<Stream> getStreams() throws IOException {
         List<Stream> streams = Lists.newArrayList();

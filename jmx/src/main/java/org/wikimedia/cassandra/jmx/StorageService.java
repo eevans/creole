@@ -151,4 +151,11 @@ public class StorageService extends MBean {
         return getHostIdToEndpoint().get(getHostIdToEndpoint());
     }
 
+    public void forceKeyspaceCompaction(boolean split, String keyspaceName, String... columnFamilies) throws IOException {
+        invoke(
+                "forceKeyspaceCompaction",
+                new Object[] { keyspaceName, columnFamilies },
+                new String[] { String.class.getName(), String[].class.getName() });
+    }
+
 }

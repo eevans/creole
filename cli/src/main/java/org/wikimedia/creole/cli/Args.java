@@ -18,7 +18,9 @@ public class Args {
     @SubCommands({
             @SubCommand(name = "info", impl = InfoCommand.class),
             @SubCommand(name = "netstat", impl = NetstatCommand.class),
-            @SubCommand(name = "metrics-dump", impl = MetricsCommand.class) })
+            @SubCommand(name = "metrics-dump", impl = MetricsCommand.class),
+            @SubCommand(name = "compactions", impl = CompactionsCommand.class),
+            @SubCommand(name = "compaction-history", impl = CompactionHistoryCommand.class)})
     private Command command;
 
     @Option(name = "-h", aliases = { "--help" }, help = true, usage = "Print help synopsis")
