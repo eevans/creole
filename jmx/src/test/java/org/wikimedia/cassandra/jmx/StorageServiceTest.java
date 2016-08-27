@@ -79,11 +79,6 @@ public class StorageServiceTest extends AbstractJmxTestCase {
     }
 
     @Test
-    public void testGetLoad() throws IOException {
-        assertThat(ss.getLoad(), any(Double.class));
-    }
-
-    @Test
     public void testGetLoadString() throws IOException {
         assertThat(ss.getLoadString(), any(String.class));
     }

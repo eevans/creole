@@ -62,10 +62,6 @@ public class StorageService extends MBean {
         return (List<String>) getAttribute("Tokens");
     }
 
-    public double getLoad() throws IOException {
-        return (double) getAttribute("Load");
-    }
-
     @SuppressWarnings("unchecked")
     public Map<String, String> getLoadMap() throws IOException {
         return (Map<String, String>) getAttribute("LoadMap");
