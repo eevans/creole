@@ -131,13 +131,17 @@ public class StorageService extends MBean {
     // String[] getAllDataFileLocations()
     // String getCommitLogLocation()
     // String getSavedCachesLocation()
-    // List<String> getKeyspaces()
     // String getPartitionerName()
     // String getClusterName()
     // int getCompactionThroughputMbPerSec()
     // int getTombstoneWarnThreshold()
     // int getTombestoneFailureThreshold()
     // boolean IsIncrementalBackupsEnabled()
+
+    @SuppressWarnings("unchecked")
+    public List<String> getKeyspaces() throws IOException {
+        return (List<String>)getAttribute("Keyspaces");
+    }
 
     public boolean isInitialized() throws IOException {
         return (Boolean) getAttribute("Initialized");

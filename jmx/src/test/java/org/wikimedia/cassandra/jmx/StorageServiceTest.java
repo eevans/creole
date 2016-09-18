@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
-import org.wikimedia.cassandra.jmx.StorageService;
 
 public class StorageServiceTest extends AbstractJmxTestCase {
 
@@ -126,6 +126,11 @@ public class StorageServiceTest extends AbstractJmxTestCase {
     @Test
     public void testGetCurrentGenerationNumber() throws IOException {
         assertThat(ss.getCurrentGenerationNumber(), any(Integer.class));
+    }
+
+    @Test
+    public void testGetKeyspaces() throws IOException {
+        assertThat(ss.getKeyspaces(), Matchers.hasItems("system", "system_auth", "system_traces"));
     }
 
     @Test
