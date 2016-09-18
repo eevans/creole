@@ -1,6 +1,7 @@
 package org.wikimedia.cassandra.jmx.dto;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class ColumnFamily {
@@ -13,6 +14,10 @@ public class ColumnFamily {
     private double droppableTombstoneRatio;
     private int minimumCompactionThreshold;
     private int maximumCompactionThreshold;
+    private List<String> builtIndexes;
+    private Map<String, String> compactionParameters;
+    private int unleveledSSTables;
+    private Integer[] sstableCountPerLevel;
 
     public String getName() {
         return name;
@@ -78,6 +83,38 @@ public class ColumnFamily {
         this.maximumCompactionThreshold = maximumCompactionThreshold;
     }
 
+    public List<String> getBuiltIndexes() {
+        return builtIndexes;
+    }
+
+    public void setBuiltIndexes(List<String> builtIndexes) {
+        this.builtIndexes = builtIndexes;
+    }
+
+    public Map<String, String> getCompactionParameters() {
+        return compactionParameters;
+    }
+
+    public void setCompactionParameters(Map<String, String> compactionParameters) {
+        this.compactionParameters = compactionParameters;
+    }
+
+    public int getUnleveledSSTables() {
+        return unleveledSSTables;
+    }
+
+    public void setUnleveledSSTables(int unleveledSSTables) {
+        this.unleveledSSTables = unleveledSSTables;
+    }
+
+    public Integer[] getSSTableCountPerLevel() {
+        return sstableCountPerLevel;
+    }
+
+    public void setSSTableCountPerLevel(Integer[] sstableCountPerLevel) {
+        this.sstableCountPerLevel = sstableCountPerLevel;
+    }
+
     public static ColumnFamily create(org.wikimedia.cassandra.jmx.ColumnFamily cf) throws IOException {
         ColumnFamily obj = new ColumnFamily();
         obj.setKeyspaceName(cf.getKeyspace());
@@ -88,6 +125,10 @@ public class ColumnFamily {
         obj.setDroppableTombstoneRatio(cf.getDroppableTombstoneRatio());
         obj.setMinimumCompactionThreshold(cf.getMinimumCompactionThreshold());
         obj.setMaximumCompactionThreshold(cf.getMaximumCompactionThreshold());
+        obj.setBuiltIndexes(cf.getBuiltIndexes());
+        obj.setCompactionParameters(cf.getCompactionParameters());
+        obj.setUnleveledSSTables(cf.getUnleveledSSTables());
+        obj.setSSTableCountPerLevel(cf.getSSTableCountPerLevel());
         return obj;
     }
 

@@ -3,6 +3,7 @@ package org.wikimedia.cassandra.jmx;
 import static org.wikimedia.cassandra.jmx.Util.newObjectName;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class ColumnFamily extends MBean {
@@ -54,9 +55,23 @@ public class ColumnFamily extends MBean {
         return (int) getAttribute("MaximumCompactionThreshold");
     }
 
-    // TODO: BuiltIndexes (List)
-    // TODO: CompactionParameters (Map<String, String>)
-    // TODO: UnleveledSSTables (int)
-    // TODO: SSTableCountPerLevel ([]?)
+    @SuppressWarnings("unchecked")
+    public List<String> getBuiltIndexes() throws IOException {
+        return (List<String>) getAttribute("BuiltIndexes");
+    }
+
+    @SuppressWarnings("unchecked")
+    public Map<String, String> getCompactionParameters() throws IOException {
+        return (Map<String, String>) getAttribute("CompactionParameters");
+    }
+
+    public int getUnleveledSSTables() throws IOException {
+        return (int) getAttribute("UnleveledSSTables");
+    }
+
+    public Integer[] getSSTableCountPerLevel() throws IOException {
+        Integer[] counts = (Integer[]) getAttribute("SSTableCountPerLevel");
+        return counts == null ? new Integer[] {} : counts;
+    }
 
 }
