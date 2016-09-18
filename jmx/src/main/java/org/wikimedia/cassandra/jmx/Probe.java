@@ -95,6 +95,10 @@ public class Probe {
         return node;
     }
 
+    public org.wikimedia.cassandra.jmx.dto.ColumnFamily getTableInfo(String keyspaceName, String tableName) throws IOException {
+        return org.wikimedia.cassandra.jmx.dto.ColumnFamily.create(new ColumnFamily(this.client, keyspaceName, tableName));
+    }
+
     public Collection<Metric> getMetrics() throws IOException {
         List<Metric> metrics = Lists.newArrayList();
 
