@@ -151,11 +151,12 @@ public class StorageService extends MBean {
         return getHostIdToEndpoint().get(getHostIdToEndpoint());
     }
 
+    // FIXME: Major compaction; Untested
     public void forceKeyspaceCompaction(boolean split, String keyspaceName, String... columnFamilies) throws IOException {
         invoke(
                 "forceKeyspaceCompaction",
-                new Object[] { keyspaceName, columnFamilies },
-                new String[] { String.class.getName(), String[].class.getName() });
+                new Object[] { split, keyspaceName, columnFamilies },
+                new String[] { Boolean.class.getName(), String.class.getName(), String[].class.getName() });
     }
 
 }
