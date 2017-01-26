@@ -1,6 +1,8 @@
 Creole
 ======
 
+Creole is a high-level, Cassandra-specific abstraction for [JMX](https://en.wikipedia.org/wiki/Java_Management_Extensions). It aims to provide an automation-friendly alternative to [NodeTool](https://wiki.apache.org/cassandra/NodeTool).
+
 Quickstart
 ----------
 
