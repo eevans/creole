@@ -37,7 +37,7 @@
     </dependency>
     <dependency>
         <groupId>junit</groupId>
-        <artifact>junit</artifact>
+        <artifactId>junit</artifactId>
     </dependency>
     <!--  TODO: delete args4j -->
     <dependency>
