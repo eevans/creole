@@ -2,13 +2,16 @@ package org.wikimedia.creole.cli;
 
 import java.io.IOException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.wikimedia.cassandra.jmx.dto.Node;
 
-public class InfoCommand extends Command {
+import com.github.rvesse.airline.annotations.Command;
+
+@Command(name="info")
+public class InfoCommand extends JsonCommand<Node> {
 
     @Override
-    public void execute(Args args) throws JsonProcessingException, IOException {
-        writeJson(System.out, getProbe(args).getNode());
+    public Node get() throws IOException {
+        return getProbe().getNode();
     }
 
 }

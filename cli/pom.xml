@@ -40,11 +40,6 @@
         <artifactId>junit</artifactId>
     </dependency>
     <!--  TODO: delete args4j -->
-    <dependency>
-      <groupId>args4j</groupId>
-      <artifactId>args4j</artifactId>
-      <version>2.0.31</version>
-    </dependency>
   </dependencies>
 
   <build>

@@ -7,30 +7,30 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-import org.kohsuke.args4j.CmdLineException;
-import org.kohsuke.args4j.CmdLineParser;
 
-public class ArgsTest {
+import com.github.rvesse.airline.help.Help;
 
-    @Test(expected = CmdLineException.class)
-    public void testEmptyArgsShouldThrow() throws CmdLineException {
-        Args a = new Args();
-        new CmdLineParser(a).parseArgument(new String[] {});
+public class CliTest {
+
+    @Test
+    public void testEmptyArgsShouldHelp() {
+        Runnable cmd = Runner.parse(new String[]{});
+        assertTrue(cmd instanceof Help);
     }
 
     @Test
-    public void testHelp() throws CmdLineException {
-        Args a = new Args();
-        new CmdLineParser(a).parseArgument(new String[] { "--help" });
-        assertTrue(a.needsHelp());
+    public void testHelp() throws Exception {
+        assertSubcommand(Help.class, "help");
+        Runnable command = Runner.parse(new String[] { "help" });
+        command.run();
     }
 
     @Test
-    public void testOptions() throws CmdLineException {
-        Args a = new Args();
-        new CmdLineParser(a).parseArgument(withRequired("info"));
-        assertEquals(a.getJmxHost(), "localhost");
-        assertEquals(a.getJmxPort(), 1234);
+    public void testOptions() {
+        Runnable action = Runner.parse(withRequired("info"));
+        BaseCommand command = (BaseCommand) action;
+        assertEquals(command.getJmxHost(), "localhost");
+        assertEquals(command.getJmxPort(), 1234);
     }
 
     @Test
@@ -68,19 +68,14 @@ public class ArgsTest {
         assertSubcommand(NetstatCommand.class, "netstat");
     }
 
-    private void assertSubcommand(final Class<? extends Command> commandClazz, final String... commands) {
-        try {
-            Args a = new Args();
-            new CmdLineParser(a).parseArgument(withRequired(commands));
-            assertTrue(a.getCommand().getClass().equals(commandClazz));
-
-        } catch (CmdLineException e) {
-            fail(e.getMessage());
-        }
+    private void assertSubcommand(final Class<? extends Runnable> commandClazz, String command, final String... args) {
+        Runnable action = Runner.parse(withRequired(command, args));
+        assertEquals(commandClazz, action.getClass());
     }
 
-    private static String[] withRequired(String... args) {
+    private static String[] withRequired(String command, String... args) {
         List<String> arguments = new ArrayList<>();
+        arguments.add(command);
         arguments.add("-H");
         arguments.add("localhost");
         arguments.add("-P");

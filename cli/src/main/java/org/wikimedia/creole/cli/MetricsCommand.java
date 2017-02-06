@@ -1,10 +1,20 @@
 package org.wikimedia.creole.cli;
 
-public class MetricsCommand extends Command {
+import java.util.Collection;
 
+import org.wikimedia.cassandra.jmx.dto.Metric;
+
+import com.github.rvesse.airline.annotations.Command;
+
+@Command(name="metrics-dump")
+public class MetricsCommand extends JsonCommand<Collection<Metric>> {
+
+    /***
+     * {@inheritDoc}
+     */
     @Override
-    public void execute(Args args) throws Exception {
-        writeJson(System.out, getProbe(args).getMetrics());
+    public Collection<Metric> get() throws Exception {
+        return getProbe().getMetrics();
     }
 
 }

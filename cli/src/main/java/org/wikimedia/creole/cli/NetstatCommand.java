@@ -1,11 +1,21 @@
 package org.wikimedia.creole.cli;
 
-public class NetstatCommand extends Command {
+import java.util.Collection;
 
+import org.wikimedia.cassandra.jmx.dto.Stream;
+
+import com.github.rvesse.airline.annotations.Command;
+
+@Command(name="netstat")
+public class NetstatCommand extends JsonCommand<Collection<Stream>> {
+
+    /***
+     * {@inheritDoc}
+     */
     @Override
     // XXX: Untested
-    public void execute(Args args) throws Exception {
-        writeJson(System.out, getProbe(args).getStreams());
+    public Collection<Stream> get() throws Exception {
+        return getProbe().getStreams();
     }
 
 }
