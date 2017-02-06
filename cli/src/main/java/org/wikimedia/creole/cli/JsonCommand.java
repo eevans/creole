@@ -6,6 +6,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+/***
+ * Base class for commands which render output in JSON.
+ * @param <T> the return type for the implemented get() operation.
+ */
 public abstract class JsonCommand <T> extends BaseCommand {
 
 
@@ -23,6 +27,11 @@ public abstract class JsonCommand <T> extends BaseCommand {
         out.println(mapObject(obj));
     }
 
+    /***
+     * Implementors will perform all work here and return the value to be serialized as JSON.
+     * @return the output of the action.
+     * @throws Exception
+     */
     public abstract T get() throws Exception;
 
     /***
