@@ -1,37 +1,42 @@
 package org.wikimedia.creole.cli;
 
-import java.io.PrintStream;
-
-import org.kohsuke.args4j.CmdLineException;
-import org.kohsuke.args4j.CmdLineParser;
+import com.github.rvesse.airline.Cli;
+import com.github.rvesse.airline.help.Help;
 
 public class Runner {
 
-    private static void usage(CmdLineParser parser, PrintStream writer) {
-        writer.println(String.format("java %s [options...] <sub-command>", Runner.class.getName()));
-        parser.printUsage(writer);
-        writer.println();
-    }
-
     public static void main(String... args) throws Exception {
-        Args cmdArgs = new Args();
-        CmdLineParser parser = new CmdLineParser(cmdArgs);
-
-        try {
-            parser.parseArgument(args);
-        }
-        catch (CmdLineException e) {
-            System.err.println(e.getLocalizedMessage());
-            usage(parser, System.err);
-            System.exit(1);
-        }
-
-        if (cmdArgs.needsHelp()) {
-            usage(parser, System.out);
-            System.exit(0);
-        }
-
-        cmdArgs.getCommand().execute(cmdArgs);
+        parse(args).run();
     }
 
+    public static Runnable parse(String... args) {
+        Cli<Runnable> parser = buildParser();
+        return parser.parse(args);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static Cli<Runnable> buildParser() {
+        /*
+         * The CLI parser is defined here.
+         * 
+         * To add a command to creole:
+         * Add a class, implementing BaseCommand or JsonCommand,
+         * depending on whether it should render output in json.
+         * Annotate that class with @Command and any options it may need.
+         * Add that class below to the withCommands(...) call.
+         */
+        
+        return Cli.<Runnable>builder("java -jar creole.jar ")
+                .withDescription("cassandra JMX client")
+                .withDefaultCommand(Help.class) // Use the Airline built-in help system
+                .withCommands(
+                        InfoCommand.class,
+                        NetstatCommand.class,
+                        MetricsCommand.class,
+                        CompactionsCommand.class,
+                        TableInfoCommand.class,
+                        UserCompactionCommand.class,
+                        CompactionHistoryCommand.class)
+                .build();
+    }
 }
